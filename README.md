@@ -18,6 +18,10 @@ This repo only provides 64-bit version. If you need a 32-bit version, you can fo
 > 
 > Some media players based on libmpv use `libmpv-2.dll` or `mpv-2.dll`.You can upgrade their libmpv version by overwriting this dll.
 
+### VA-API Win32 Driver
+
+https://github.com/pal1000/mesa-dist-win#va-api-drivers
+
 ### Release Retention Policy
 
 -   The last build of each month is kept for one year.

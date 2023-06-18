@@ -9,14 +9,10 @@ on:
       build_target:
         description: "Build target"
         required: false
-        default: "all-64bit"
+        default: "64bit"
         type: choice
         options:
-        - 32bit
         - 64bit
-        - 64bit-v3
-        - all-64bit
-        - all
       needclean:
         description: 'Build without cache'
         required: false
@@ -25,7 +21,7 @@ on:
       release:
         description: "Publish a release"
         required: false
-        default: false
+        default: true
         type: boolean
       command:
         description: 'input command you want to run before build'
@@ -176,7 +172,7 @@ jobs:
       - name: Checkout toolchain
         uses: actions/checkout@v3
         with:
-          repository: shinchiro/mpv-winbuild-cmake
+          repository: arm64-v9a/mpv-winbuild-cmake
           path: mpv-winbuild-cmake
       - name: Get Params
         run: |
@@ -331,7 +327,7 @@ jobs:
             ffmpeg_hash = ffmpeg_hash.trim();
             const ffmpeg_name = `ffmpeg-${arch}-git-${ffmpeg_hash}`;
             core.exportVariable( 'ffmpeg_name', ffmpeg_name );
-            await exec.exec(`7z a -m0=lzma2 -mx=9 -ms=on mpv-winbuild-cmake/release/${ffmpeg_name}.7z ./mpv-winbuild-cmake/build${{ matrix.bit }}/install/mingw/bin/ffmpeg.exe`)
+            await exec.exec(`7z a -m0=lzma2 -mx=9 -ms=on mpv-winbuild-cmake/release/${ffmpeg_name}.7z ./mpv-winbuild-cmake/build${{ matrix.bit }}/install/mingw/bin/ffmpeg.exe ./mpv-winbuild-cmake/build${{ matrix.bit }}/install/mingw/bin/libva*.dll`)
 
       - name: upload mpv-debug
         uses: actions/upload-artifact@v3

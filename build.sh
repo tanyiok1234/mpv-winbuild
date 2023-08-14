@@ -61,7 +61,7 @@ build() {
     export CFLAGS="-O3 -march=znver4 -fcf-protection=full -fstack-clash-protection -mprefer-vector-width=256 -fvisibility=hidden -Wa,-muse-unaligned-vector-move -DNDEBUG -DWIN32_WINNT=0x0A00"
     export CXXFLAGS="$CFLAGS"
     export LDFLAGS="$CFLAGS -Wl,--build-id=none,-O3,--exclude-libs,ALL"
-    export RUSTFLAGS="-C opt-level=3 -C target-cpu=skylake -C strip=symbols"
+    export RUSTFLAGS="-C opt-level=3 -C target-cpu=znver4 -C strip=symbols"
     ninja -C $buildroot/build$bit mpv
 
     if [ -d $buildroot/build$bit/mpv-$arch* ] ; then
